@@ -24,4 +24,12 @@ export default defineConfig(async () => ({
       "@": path.resolve(__dirname, "src/"),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        translate: path.resolve(__dirname, "translate.html"),
+      },
+    },
+  },
 }));

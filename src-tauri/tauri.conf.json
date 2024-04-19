@@ -21,6 +21,18 @@
       },
       "fs": {
         "all": true
+      },
+      "window": {
+        "setTitle": true,
+        "close": true,
+        "create": true,
+        "setSize": true,
+        "setPosition": true,
+        "setFocus": true,
+        "center": true,
+        "hide": true,
+        "show": true,
+        "unminimize": true
       }
     },
     "windows": [

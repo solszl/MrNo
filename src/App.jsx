@@ -21,12 +21,22 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { MdOutlineBatchPrediction } from "react-icons/md";
+import Translate from "./window/translate";
+
+const windowsMap = {
+  translate: <Translate />,
+};
 
 export default function App() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <div>
+      <div className="flex align-middle">
+        <MdOutlineBatchPrediction className="h-10 w-10" />
+        <span className="text-3xl self-end">Mr No</span>
+      </div>
       <Collapsible
         open={isOpen}
         onOpenChange={setIsOpen}
@@ -73,6 +83,7 @@ export default function App() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      <Button variant="outline">Hello</Button>
     </div>
   );
 }
