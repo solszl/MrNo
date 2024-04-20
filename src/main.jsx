@@ -1,3 +1,6 @@
+import "@icon-park/react/styles/index.css";
+
+import { TooltipProvider } from "@/components/ui/tooltip";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -13,6 +16,8 @@ document.addEventListener("keydown", async (e) => {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {/* <App /> */}
-    <Translate />
+    <TooltipProvider>
+      <Translate />
+    </TooltipProvider>
   </React.StrictMode>
 );

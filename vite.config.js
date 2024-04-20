@@ -28,7 +28,7 @@ export default defineConfig(async () => ({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
-        translate: path.resolve(__dirname, "translate.html"),
+        translate: path.resolve(__dirname, "settings.html"),
       },
     },
   },

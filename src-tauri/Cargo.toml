@@ -11,9 +11,24 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = [ "window-set-size", "window-unminimize", "window-set-title", "window-show", "window-set-focus", "window-hide", "window-center", "window-create", "window-set-position", "window-close", "fs-all", "path-all", "shell-open"] }
+tauri = { version = "1", features = [
+    "system-tray",
+    "window-set-size",
+    "window-unminimize",
+    "window-set-title",
+    "window-show",
+    "window-set-focus",
+    "window-hide",
+    "window-create",
+    "window-set-position",
+    "window-close",
+    "fs-all",
+    "path-all",
+    "shell-open",
+] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+tauri-plugin-positioner = { version = "1.0.5", features = ["system-tray"] }
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

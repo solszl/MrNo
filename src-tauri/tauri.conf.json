@@ -29,7 +29,7 @@
         "setSize": true,
         "setPosition": true,
         "setFocus": true,
-        "center": true,
+        "center": false,
         "hide": true,
         "show": true,
         "unminimize": true
@@ -38,7 +38,7 @@
     "windows": [
       {
         "title": "mrno",
-        "width": 800,
+        "width": 300,
         "height": 600
       }
     ],
@@ -56,6 +56,11 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ]
+    },
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": false,
+      "menuOnLeftClick": false
     }
   }
 }
