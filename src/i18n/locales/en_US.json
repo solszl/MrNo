@@ -1,1 +1,12 @@
-{}
+{
+  "translation": {
+    "translate": {
+      "read": "Read",
+      "copy": "Copy",
+      "clear": "Clear",
+      "translate": "Translate",
+      "input_prompt": "Enter the content to be translated",
+      "settings": "Setting"
+    }
+  }
+}

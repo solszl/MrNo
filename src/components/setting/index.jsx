@@ -1,8 +1,10 @@
 import InteractiveWrapper from "@/components/interactive/wrapper";
 import { SettingOne } from "@icon-park/react";
 import { WebviewWindow } from "@tauri-apps/api/window";
+import { useTranslation } from "react-i18next";
 
 const SettingButton = () => {
+  const { t } = useTranslation();
   let settingPanel;
   const openSettingPanel = async () => {
     if (settingPanel) {
@@ -36,9 +38,12 @@ const SettingButton = () => {
       settingPanel = webview;
     }
   };
-
+  // "Settings (⌘+,)"
   return (
-    <InteractiveWrapper tooltip="Settings (⌘+,)" onClick={openSettingPanel}>
+    <InteractiveWrapper
+      tooltip={t("translate.settings") + ` (⌘+,)`}
+      onClick={openSettingPanel}
+    >
       <SettingOne theme="outline" size="24" fill="#333" strokeWidth={2} />
     </InteractiveWrapper>
   );

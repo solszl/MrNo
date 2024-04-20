@@ -1,1 +1,12 @@
-{}
+{
+  "translation": {
+    "translate": {
+      "read": "朗读",
+      "copy": "复制",
+      "clear": "清除",
+      "translate": "翻译",
+      "input_prompt": "输入要翻译的内容",
+      "settings": "设置"
+    }
+  }
+}

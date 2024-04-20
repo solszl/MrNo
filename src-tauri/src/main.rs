@@ -21,7 +21,7 @@ fn main() {
                     size: _,
                     ..
                 } => {
-                    let window = app.get_window("main").unwrap();
+                    let window = app.get_window("translate").unwrap();
                     let _ = window.move_window(Position::TrayCenter);
                     if window.is_visible().unwrap() {
                         window.hide().unwrap();
@@ -43,7 +43,7 @@ fn main() {
                         std::process::exit(0);
                     }
                     "hide" => {
-                        let window = app.get_window("main").unwrap();
+                        let window = app.get_window("translate").unwrap();
                         window.hide().unwrap();
                     }
                     _ => {}

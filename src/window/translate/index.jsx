@@ -1,6 +1,7 @@
 import InteractiveWrapper from "@/components/interactive/wrapper";
 import SettingButton from "@/components/setting";
 import { Textarea } from "@/components/ui/textarea";
+import "@/i18n";
 import {
   Copy,
   DeleteTwo,
@@ -8,48 +9,10 @@ import {
   Translate as TranslateIcon,
   VolumeNotice,
 } from "@icon-park/react";
-import { WebviewWindow } from "@tauri-apps/api/window";
+import { useTranslation } from "react-i18next";
 
 const Translate = () => {
-  let translateWindow;
-  const createNewWindow = async () => {
-    if (translateWindow) {
-      await translateWindow.show();
-      return;
-    }
-    console.log("prepare for create window");
-    if (WebviewWindow) {
-      const webview = new WebviewWindow(
-        `translate-${Math.floor(Math.random() * 2 ** 30)}`,
-        {
-          url: "settings.html",
-          width: 500,
-          height: 500,
-          visible: false,
-          center: true,
-          title: "settings",
-          // decorations: false,
-        }
-      );
-
-      await webview.once("tauri://initialized", () => {
-        console.log("webview initialized");
-      });
-
-      await webview.once("tauri://error", (e) => {
-        console.log("webview error", e);
-      });
-
-      webview.once("tauri://close-requested", (e) => {
-        console.log("webview close-requested", e);
-        translateWindow = null;
-      });
-
-      console.log(webview);
-      await webview.show();
-      translateWindow = webview;
-    }
-  };
+  const { t } = useTranslation();
 
   return (
     <div className="flex justify-center items-center m-2 flex-col">
@@ -60,21 +23,21 @@ const Translate = () => {
         <SettingButton />
       </div>
       <Textarea
-        placeholder="Type your message here."
+        placeholder={t("translate.input_prompt")}
         className="outline-none w-full focus-visible:ring-0 min-h-[40px]"
       />
 
       <div className="flex justify-between items-center w-full ml-2 mr-2 mt-2">
-        <InteractiveWrapper tooltip="Speak (⌘+s)">
+        <InteractiveWrapper tooltip={t("translate.read") + ` (⌘+R)`}>
           <VolumeNotice theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
-        <InteractiveWrapper tooltip="Copy to Clipboard (⌘+c)">
+        <InteractiveWrapper tooltip={t("translate.copy") + ` (⌘+C)`}>
           <Copy theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
-        <InteractiveWrapper tooltip="Delete All (⌘+d)">
+        <InteractiveWrapper tooltip={t("translate.clear") + ` (⌘+D)`}>
           <DeleteTwo theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
-        <InteractiveWrapper tooltip="Translate (⌘+t)">
+        <InteractiveWrapper tooltip={t("translate.translate") + ` (⌘+T)`}>
           <TranslateIcon
             theme="outline"
             size="24"
