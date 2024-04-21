@@ -13,6 +13,5 @@ document.addEventListener("keydown", async (e) => {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-    {/* <Translate /> */}
   </React.StrictMode>
 );

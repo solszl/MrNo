@@ -7,6 +7,22 @@
       "translate": "翻译",
       "input_prompt": "输入要翻译的内容",
       "settings": "设置"
+    },
+    "configure": {
+      "general": {
+        "label": "常规设置",
+        "title": "常规设置"
+      },
+      "translate": {
+        "label": "翻译",
+        "title": "翻译",
+        "detect_engine": {},
+        "translate_engine": {}
+      },
+      "about": {
+        "label": "关于",
+        "title": "关于"
+      }
     }
   }
 }

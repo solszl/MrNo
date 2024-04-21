@@ -18,10 +18,7 @@ export default function App() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    // console.log("设置app 语言, zh_CN");
-    // i18n.changeLanguage("zh_cn");
-    i18n.changeLanguage("en");
-    console.log(appWindow.label);
+    i18n.changeLanguage("zh_cn");
   }, []);
 
   return (

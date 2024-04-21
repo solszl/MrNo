@@ -5,6 +5,7 @@ import zh_CN from "./locales/zh_CN.json";
 import i18n from "i18next";
 
 i18n.use(initReactI18next).init({
+  lng: "en",
   resources: {
     zh_cn: zh_CN,
     en: en_US,
