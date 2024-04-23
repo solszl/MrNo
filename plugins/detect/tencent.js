@@ -1,10 +1,9 @@
 export const version = "0.0.0";
-export const plugin_name = "baidu_detect";
+export const plugin_name = "tencent_detect";
 
-const URL = "https://fanyi.baidu.com/langdetect";
+const URL = "https://fanyi.qq.com/api/translate";
 
 export const detect = async (str, options = {}) => {
-  // 传入tauri的fetch 和 Body
   const { fetch, Body } = options;
   const fetchOptions = {
     method: "POST",
@@ -14,12 +13,12 @@ export const detect = async (str, options = {}) => {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: Body.form({
-      query: str,
+      sourceText: str,
     }),
   };
 
   const { data, ok, status } = await fetch(URL, fetchOptions);
   if (ok && status === 200) {
-    return data?.["lan"];
+    return data?.["translate"]?.["source"];
   }
 };
