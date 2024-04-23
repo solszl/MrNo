@@ -17,11 +17,14 @@ const SettingButton = () => {
         `setting-${Math.floor(Math.random() * 2 ** 30)}`,
         {
           url: "settings.html",
-          width: 500,
-          height: 500,
+          width: 1600,
+          height: 900,
           visible: false,
           center: true,
           title: "settings",
+          // resizable: false,
+          maximizable: false,
+          minimizable: false,
         }
       );
 
@@ -38,10 +41,9 @@ const SettingButton = () => {
       settingPanel = webview;
     }
   };
-  // "Settings (⌘+,)"
   return (
     <InteractiveWrapper
-      tooltip={t("translate.settings") + ` (⌘+,)`}
+      tooltip={t("translate.settings") + ` (⌘,)`}
       onClick={openSettingPanel}
     >
       <SettingOne theme="outline" size="24" fill="#333" strokeWidth={2} />

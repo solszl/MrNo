@@ -23,7 +23,9 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <TooltipProvider>{windowsMap[appWindow.label]}</TooltipProvider>
+      <TooltipProvider>
+        {windowsMap[appWindow.label.split("-")[0]]}
+      </TooltipProvider>
     </BrowserRouter>
   );
 }

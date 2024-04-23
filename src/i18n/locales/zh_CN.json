@@ -10,7 +10,7 @@
     },
     "configure": {
       "general": {
-        "label": "常规设置",
+        "label": "常规",
         "title": "常规设置"
       },
       "translate": {
@@ -18,6 +18,15 @@
         "title": "翻译",
         "detect_engine": {},
         "translate_engine": {}
+      },
+      "shortcut": {
+        "label": "快捷键",
+        "title": "快捷键设置",
+        "enable": "启用",
+        "command": "命令",
+        "keybinding": "快捷键",
+        "description": "说明",
+        "action": "动作"
       },
       "about": {
         "label": "关于",

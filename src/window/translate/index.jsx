@@ -1,5 +1,4 @@
 import InteractiveWrapper from "@/components/interactive/wrapper";
-import SettingButton from "@/components/setting";
 import { Textarea } from "@/components/ui/textarea";
 import "@/i18n";
 import {
@@ -10,6 +9,7 @@ import {
   VolumeNotice,
 } from "@icon-park/react";
 import { useTranslation } from "react-i18next";
+import SettingButton from "./components/settings";
 
 const Translate = () => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ const Translate = () => {
   return (
     <div className="flex justify-center items-center m-2 flex-col">
       <div className="flex justify-end w-full mx-2 gap-x-2">
-        <InteractiveWrapper tooltip="Pin Window (⌥+p)">
+        <InteractiveWrapper tooltip="Pin Window (⌥p)">
           <Pin theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
         <SettingButton />
@@ -31,16 +31,16 @@ const Translate = () => {
       />
 
       <div className="flex justify-between items-center w-full ml-2 mr-2 mt-2">
-        <InteractiveWrapper tooltip={t("translate.read") + ` (⌥+R)`}>
+        <InteractiveWrapper tooltip={t("translate.read") + ` (⌥R)`}>
           <VolumeNotice theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
-        <InteractiveWrapper tooltip={t("translate.copy") + ` (⌥+C)`}>
+        <InteractiveWrapper tooltip={t("translate.copy") + ` (⌥C)`}>
           <Copy theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
-        <InteractiveWrapper tooltip={t("translate.clear") + ` (⌥+D)`}>
+        <InteractiveWrapper tooltip={t("translate.clear") + ` (⌥D)`}>
           <DeleteTwo theme="outline" size="24" fill="#333" strokeWidth={2} />
         </InteractiveWrapper>
-        <InteractiveWrapper tooltip={t("translate.translate") + ` (⌥+T)`}>
+        <InteractiveWrapper tooltip={t("translate.translate") + ` (⌥T)`}>
           <TranslateIcon
             theme="outline"
             size="24"

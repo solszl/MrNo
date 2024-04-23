@@ -7,6 +7,22 @@
       "translate": "Translate",
       "input_prompt": "Enter the content to be translated",
       "settings": "Setting"
+    },
+    "configure": {
+      "general": {
+        "label": "General",
+        "title": "General"
+      },
+      "translate": {
+        "label": "Translate",
+        "title": "Translate",
+        "detect_engine": {},
+        "translate_engine": {}
+      },
+      "about": {
+        "label": "About",
+        "title": "About"
+      }
     }
   }
 }

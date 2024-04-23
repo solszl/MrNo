@@ -33,6 +33,11 @@
         "hide": true,
         "show": true,
         "unminimize": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": ["https://fanyi.baidu.com/*"]
       }
     },
     "windows": [
@@ -49,7 +54,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": "com.zhenliang.mrno",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
