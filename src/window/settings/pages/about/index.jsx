@@ -4,7 +4,7 @@ import { Body, fetch } from "@tauri-apps/api/http";
 
 const About = () => {
   const languageDetect = async () => {
-    const { version, detect } = await import("/plugins/detect/baidu.js");
+    const { version, detect } = await import("/plugins/detect/iciba.js");
 
     const resp = await detect("私の生活", {
       fetch,

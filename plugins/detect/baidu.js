@@ -3,6 +3,7 @@ export const plugin_name = "baidu_detect";
 
 const URL = "https://fanyi.baidu.com/langdetect";
 
+// docs: https://fanyi-api.baidu.com/product/113
 export const detect = async (str, options = {}) => {
   // 传入tauri的fetch 和 Body
   const { fetch, Body } = options;
