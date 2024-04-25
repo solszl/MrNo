@@ -22,7 +22,7 @@ fn main() {
                     ..
                 } => {
                     let window = app.get_window("translate").unwrap();
-                    let _ = window.move_window(Position::TrayCenter);
+                    let _ = window.move_window(Position::TrayRight);
                     if window.is_visible().unwrap() {
                         window.hide().unwrap();
                     } else {

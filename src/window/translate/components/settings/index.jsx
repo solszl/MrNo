@@ -46,7 +46,7 @@ const SettingButton = () => {
       tooltip={t("translate.settings") + ` (⌘,)`}
       onClick={openSettingPanel}
     >
-      <SettingOne theme="outline" size="24" fill="#333" strokeWidth={2} />
+      <SettingOne theme="outline" size="16" fill="#333" strokeWidth={2} />
     </InteractiveWrapper>
   );
 };

@@ -1,17 +1,33 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Body, fetch } from "@tauri-apps/api/http";
+import {
+  Body,
+  Client,
+  ResponseType,
+  fetch,
+  getClient,
+} from "@tauri-apps/api/http";
 
 const About = () => {
   const languageDetect = async () => {
-    const { version, detect } = await import("/plugins/detect/iciba.js");
+    // const { version, detect } = await import("/plugins/detect/iciba.js");
 
-    const resp = await detect("私の生活", {
+    // const resp = await detect("私の生活", {
+    //   fetch,
+    //   Body,
+    // });
+
+    // console.log(resp);
+
+    const { version, translate } = await import("/plugins/translate/baidu.js");
+
+    await translate("auto", "zh", "hello", {
       fetch,
       Body,
+      Client,
+      ResponseType,
+      getClient,
     });
-
-    console.log(resp);
   };
   return (
     <div className="space-y-6">

@@ -66,14 +66,16 @@ const General = () => {
       <Separator />
       <h3 className="text-lg font-medium">引擎设置</h3>
       <Tabs defaultValue="translate" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="translate">翻译引擎</TabsTrigger>
           <TabsTrigger value="detect">检测引擎</TabsTrigger>
           <TabsTrigger value="voice">声音引擎</TabsTrigger>
+          <TabsTrigger value="website">网页引擎</TabsTrigger>
         </TabsList>
         <TabsContent value="translate">翻译</TabsContent>
         <TabsContent value="detect">检测</TabsContent>
         <TabsContent value="voice">发音</TabsContent>
+        <TabsContent value="website">网页</TabsContent>
       </Tabs>
     </div>
   );

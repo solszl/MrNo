@@ -104,60 +104,6 @@ const General = () => {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex justify-between items-center space-x-8 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
-        <div className="space-y-0.5">
-          <p className="text-sm font-medium leading-none">应用字体</p>
-          <p className="text-sm font-extralight text-muted-foreground">
-            Email digest, mentions & all activity.
-          </p>
-        </div>
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="默认" />
-          </SelectTrigger>
-          <SelectContent>
-            {[
-              "System",
-              "Chinese Simplified",
-              "Chinese Traditional",
-              "English",
-            ].map((lng) => {
-              return (
-                <SelectItem key={lng} value={lng}>
-                  {lng}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="flex justify-between items-center space-x-8 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
-        <div className="space-y-0.5">
-          <p className="text-sm font-medium leading-none">应用字体大小</p>
-          <p className="text-sm font-extralight text-muted-foreground">
-            Email digest, mentions & all activity.
-          </p>
-        </div>
-        <Select>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="默认" />
-          </SelectTrigger>
-          <SelectContent>
-            {[
-              "System",
-              "Chinese Simplified",
-              "Chinese Traditional",
-              "English",
-            ].map((lng) => {
-              return (
-                <SelectItem key={lng} value={lng}>
-                  {lng}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
-      </div>
     </div>
   );
 };
