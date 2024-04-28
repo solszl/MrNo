@@ -1,12 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  Body,
-  Client,
-  ResponseType,
-  fetch,
-  getClient,
-} from "@tauri-apps/api/http";
 
 const About = () => {
   const languageDetect = async () => {
@@ -19,15 +12,18 @@ const About = () => {
 
     // console.log(resp);
 
-    const { version, translate } = await import("/plugins/translate/baidu.js");
+    // const { version, translate } = await import("/plugins/translate/baidu.js");
 
-    await translate("auto", "zh", "hello", {
-      fetch,
-      Body,
-      Client,
-      ResponseType,
-      getClient,
-    });
+    // await translate("auto", "zh", "hello", {
+    //   fetch,
+    //   Body,
+    //   Client,
+    //   ResponseType,
+    //   getClient,
+    // });
+
+    const { detect, translate, voice } = await import("/plugins/collect.json");
+    console.log(detect, translate, voice);
   };
   return (
     <div className="space-y-6">

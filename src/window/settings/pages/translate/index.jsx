@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { EngineColumns } from "../../components/engine-table/engine-columns";
+import EngineDataTable from "../../components/engine-table/engine-data-table";
 
 const General = () => {
   return (
@@ -65,18 +67,22 @@ const General = () => {
       </div>
       <Separator />
       <h3 className="text-lg font-medium">引擎设置</h3>
-      <Tabs defaultValue="translate" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="translate">翻译引擎</TabsTrigger>
-          <TabsTrigger value="detect">检测引擎</TabsTrigger>
-          <TabsTrigger value="voice">声音引擎</TabsTrigger>
-          <TabsTrigger value="website">网页引擎</TabsTrigger>
-        </TabsList>
-        <TabsContent value="translate">翻译</TabsContent>
-        <TabsContent value="detect">检测</TabsContent>
-        <TabsContent value="voice">发音</TabsContent>
-        <TabsContent value="website">网页</TabsContent>
-      </Tabs>
+      <div className="flex gap-x-4">
+        <Tabs defaultValue="translate" className="flex-1">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="translate">翻译引擎</TabsTrigger>
+            <TabsTrigger value="detect">检测引擎</TabsTrigger>
+            <TabsTrigger value="voice">声音引擎</TabsTrigger>
+            <TabsTrigger value="website">网页引擎</TabsTrigger>
+          </TabsList>
+          <TabsContent value="translate" className="w-full">
+            <EngineDataTable columns={EngineColumns} />
+          </TabsContent>
+          <TabsContent value="detect">检测</TabsContent>
+          <TabsContent value="voice">发音</TabsContent>
+          <TabsContent value="website">网页</TabsContent>
+        </Tabs>
+      </div>
     </div>
   );
 };

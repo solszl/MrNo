@@ -16,8 +16,11 @@
       "translate": {
         "label": "翻译",
         "title": "翻译",
-        "detect_engine": {},
-        "translate_engine": {}
+        "engine_enable": "是否启用",
+        "engine_name": "引擎名称",
+        "engine_version": "引擎版本",
+        "engine_configured": "已配置",
+        "engine_action": "动作"
       },
       "shortcut": {
         "label": "快捷键",

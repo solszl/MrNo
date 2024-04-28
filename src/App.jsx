@@ -9,6 +9,9 @@ import "./i18n";
 import Settings from "./window/settings";
 import Translate from "./window/translate";
 
+import "./storage/configure";
+import "./storage/engines";
+
 const windowsMap = {
   translate: <Translate />,
   setting: <Settings />,
@@ -17,6 +20,7 @@ const windowsMap = {
 export default function App() {
   const { i18n } = useTranslation();
 
+  console.log(appWindow.label);
   useEffect(() => {
     i18n.changeLanguage("zh_cn");
   }, []);

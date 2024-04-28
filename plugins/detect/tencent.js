@@ -3,6 +3,7 @@ export const plugin_name = "tencent_detect";
 
 const URL = "https://fanyi.qq.com/api/translate";
 
+// docs: https://cloud.tencent.com/document/product/551/15620
 // docs: https://cloud.tencent.com/document/product/551/15619
 export const detect = async (str, options = {}) => {
   const { fetch, Body } = options;

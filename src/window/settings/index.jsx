@@ -27,8 +27,8 @@ const Settings = () => {
   ];
 
   return (
-    <div className="hidden space-y-6 p-10 pb-16 md:block">
-      <div className="flex flex-col space-y-8  relative">
+    <div className="space-y-6 p-10 pb-16">
+      <div className="flex flex-col relative">
         <aside className="-mx-4 w-1/5 fixed">
           <SidebarNav items={sidebarNavItems} />
         </aside>
