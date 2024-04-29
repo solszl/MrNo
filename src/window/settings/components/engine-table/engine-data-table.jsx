@@ -27,7 +27,7 @@ const EngineDataTable = ({
       name: "baidu",
       version: "0.0.0",
       configured: true,
-      action: () => {},
+      regURL: "https://api.fanyi.baidu.com/product/11",
     },
     {
       id: "tentcent",
@@ -35,7 +35,7 @@ const EngineDataTable = ({
       name: "tencent",
       version: "0.0.0",
       configured: false,
-      action: () => {},
+      regURL: "https://cloud.tencent.com/document/product/551/15619",
     },
   ],
   columns,

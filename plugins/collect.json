@@ -3,7 +3,8 @@
     "baidu": {
       "plugin_name": "baidu_detect",
       "ver": "0.0.0",
-      "regURL": "https://fanyi-api.baidu.com/product/113"
+      "regURL": "https://api.fanyi.baidu.com/product/11",
+      "cfg": ["appId", "secretKey"]
     },
     "tencent": {
       "plugin_name": "tencent_detect",

@@ -1,5 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import i18next from "i18next";
+import { EngineConfigDialog } from "./engine-config-dialog";
 import EngineRowAction from "./engine-row-action";
 
 const { t } = i18next;
@@ -44,7 +45,11 @@ export const EngineColumns = [
       return t("configure.translate.engine_configured");
     },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("configured")}</div>
+      // <div className="capitalize">{row.getValue("configured")}</div>
+
+      <EngineConfigDialog>
+        <div className="capitalize">open</div>
+      </EngineConfigDialog>
     ),
   },
   {
