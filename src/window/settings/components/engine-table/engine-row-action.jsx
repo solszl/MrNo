@@ -45,7 +45,7 @@ const EngineRowAction = ({ row }) => {
       <EngineConfigDialog
         open={openDialog}
         onClose={() => setOpenDialog(false)}
-        configData={row.original}
+        originalConfigData={row.original}
       />
     </div>
   );
