@@ -20,7 +20,11 @@
         "engine_name": "引擎名称",
         "engine_version": "引擎版本",
         "engine_configured": "已配置",
-        "engine_action": "动作"
+        "engine_action": "动作",
+        "engine_empty": "空数据",
+        "engine_config_title": "平台信息配置",
+        "engine_config_desc": "配置平台的AppID, SecretKey等必要信息",
+        "engine_config_save": "保存"
       },
       "shortcut": {
         "label": "快捷键",

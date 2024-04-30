@@ -79,6 +79,15 @@ const General = () => {
       </div>
       <div className="flex justify-between items-center space-x-8 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
         <div className="space-y-0.5">
+          <p className="text-sm font-medium leading-none">保留在程序坞中</p>
+          <p className="text-sm font-extralight text-muted-foreground">
+            Email digest, mentions & all activity.
+          </p>
+        </div>
+        <Switch />
+      </div>
+      <div className="flex justify-between items-center space-x-8 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
+        <div className="space-y-0.5">
           <p className="text-sm font-medium leading-none">应用语言</p>
           <p className="text-sm font-extralight text-muted-foreground">
             Email digest, mentions & all activity.

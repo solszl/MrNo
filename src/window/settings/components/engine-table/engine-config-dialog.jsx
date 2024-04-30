@@ -10,36 +10,44 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export const EngineConfigDialog = ({ open, onClose, configData }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     console.log("configData", configData);
   }, [open]);
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>平台信息配置</DialogTitle>
+          <DialogTitle>
+            {t("configure.translate.engine_config_title")}
+          </DialogTitle>
           <DialogDescription>
-            配置平台的AppID, SecretKey等必要信息
+            {t("configure.translate.engine_config_desc")}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              param1
-            </Label>
-            <Input id="name" placeholder="param1" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              param2
-            </Label>
-            <Input id="username" className="col-span-3" placeholder="param2" />
-          </div>
+          {configData?.cfg &&
+            configData.cfg.map((cfg, index) => (
+              <div
+                index={index}
+                className="grid grid-cols-4 items-center gap-4"
+              >
+                <Label htmlFor={cfg} className="text-right capitalize">
+                  {cfg}
+                </Label>
+                <Input id={cfg} className="col-span-3" placeholder={cfg} />
+              </div>
+            ))}
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit">
+            {t("configure.translate.engine_config_save")}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

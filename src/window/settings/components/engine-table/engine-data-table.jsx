@@ -18,6 +18,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const EngineDataTable = ({
   data = [
@@ -28,18 +29,21 @@ const EngineDataTable = ({
       version: "0.0.0",
       configured: true,
       regURL: "https://api.fanyi.baidu.com/product/11",
+      cfg: ["appId", "secretKey", "appId1", "secretKey2"],
     },
     {
-      id: "tentcent",
+      id: "tencent",
       enable: false,
       name: "tencent",
       version: "0.0.0",
       configured: false,
       regURL: "https://cloud.tencent.com/document/product/551/15619",
+      cfg: ["appId", "secretKey"],
     },
   ],
   columns,
 }) => {
+  const { t } = useTranslation();
   const [rowSelection, setRowSelection] = useState({});
   const [sorting, setSorting] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
@@ -112,7 +116,7 @@ const EngineDataTable = ({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  空数据
+                  {t("configure.translate.engine_empty")}
                 </TableCell>
               </TableRow>
             )}
