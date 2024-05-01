@@ -14,6 +14,7 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import useEngineStore from "@/storage/engines";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -25,6 +26,8 @@ export const EngineConfigDialog = ({ open, onClose, originalConfigData }) => {
   const [configData, setConfigData] = useState(null);
 
   const [formSchema, setFormSchema] = useState({});
+
+  const engineStore = useEngineStore();
 
   const form = useForm({
     // resolver: zodResolver(FormSchema1),
@@ -51,7 +54,8 @@ export const EngineConfigDialog = ({ open, onClose, originalConfigData }) => {
   }, [open]);
 
   const onSubmit = (data) => {
-    console.log("form submit", data);
+    console.log("form submit", data, configData);
+    engineStore.setGeneralConfig({ platform: configData.id, ...data });
   };
 
   return (
