@@ -6,7 +6,8 @@
       "clear": "清除",
       "translate": "翻译",
       "input_prompt": "输入要翻译的内容",
-      "settings": "设置"
+      "settings": "设置",
+      "explain": "超出后将自动截断翻译"
     },
     "configure": {
       "general": {
