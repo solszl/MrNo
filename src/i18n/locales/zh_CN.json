@@ -22,9 +22,13 @@
         "engine_configured": "已配置",
         "engine_action": "动作",
         "engine_empty": "空数据",
-        "engine_config_title": "平台信息配置",
-        "engine_config_desc": "配置平台的AppID, SecretKey等必要信息",
-        "engine_config_save": "保存"
+        "config_dialog": {
+          "title": "平台信息配置",
+          "desc": "配置平台的AppID, SecretKey等必要信息",
+          "save": "保存",
+          "toast": "保存成功",
+          "toast_desc": "保存{{platform}}平台信息成功"
+        }
       },
       "shortcut": {
         "label": "快捷键",

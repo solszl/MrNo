@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import { useTranslation } from "react-i18next";
 import { useRoutes } from "react-router-dom";
 import SidebarNav from "./components/sidebar/sidebar-nav";
@@ -33,6 +34,7 @@ const Settings = () => {
           <SidebarNav items={sidebarNavItems} />
         </aside>
         <div className="pl-[22%]">{pages}</div>
+        <Toaster />
       </div>
     </div>
   );

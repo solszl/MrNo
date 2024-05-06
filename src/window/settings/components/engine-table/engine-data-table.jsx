@@ -29,7 +29,7 @@ const EngineDataTable = ({
       version: "0.0.0",
       configured: true,
       regURL: "https://api.fanyi.baidu.com/product/11",
-      cfg: ["appId", "secretKey", "appId1", "secretKey2"],
+      cfg: ["appId", "secretKey"],
     },
     {
       id: "tencent",
@@ -38,7 +38,7 @@ const EngineDataTable = ({
       version: "0.0.0",
       configured: false,
       regURL: "https://cloud.tencent.com/document/product/551/15619",
-      cfg: ["appId", "secretKey"],
+      cfg: ["appId", "secretKey", "appId1", "secretKey2"],
     },
   ],
   columns,
