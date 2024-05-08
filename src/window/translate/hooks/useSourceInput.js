@@ -1,5 +1,7 @@
-import { useDebounceEffect } from "ahooks";
+import useEngineStore from "@/storage/engines";
+import { useAsyncEffect, useDebounceEffect } from "ahooks";
 import { useEffect, useState } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 const useSourceInput = (props) => {
   const { inputRef } = props;
@@ -7,6 +9,13 @@ const useSourceInput = (props) => {
 
   const [content, setContent] = useState("");
   const [debounceValue, setDebounceValue] = useState("");
+  const [detectSrc, setDetectSrc] = useState("");
+
+  const engineStore = useEngineStore(
+    useShallow((state) => ({
+      generalConfigs: state.generalConfigs,
+    }))
+  );
 
   const onInput = (e) => {
     const value = inputRef.current?.value;
@@ -40,7 +49,25 @@ const useSourceInput = (props) => {
     console.log("debounceValue", debounceValue);
   }, [debounceValue]);
 
-  return { ref, debounceValue, content };
+  useAsyncEffect(async () => {
+    if (debounceValue === "") {
+      return;
+    }
+
+    // TODO: 平台id 读取config,暂时写死方便调试
+    const platformId = "baidu";
+    const platformParams = engineStore.generalConfigs[platformId];
+
+    const pluginPath = `/plugins/detect/${platformId}.js`;
+    const { detect } = await import(/* @vite-ignore */ pluginPath);
+    const src = await detect(debounceValue, {
+      ...platformParams,
+    });
+
+    setDetectSrc(src);
+  }, [debounceValue]);
+
+  return { ref, debounceValue, content, detectSrc };
 };
 
 export default useSourceInput;

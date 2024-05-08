@@ -62,6 +62,16 @@
       "u.": "uncountable noun - 不可数名词",
       "c.": "countable noun - 可数名词",
       "pl.": "plural - 复数"
+    },
+    "language": {
+      "jp": "日文",
+      "en": "英语",
+      "zh": "中文",
+      "kor": "韩语",
+      "th": "泰语",
+      "vie": "越南语",
+      "ru": "俄语",
+      "unsupported": "不支持该语言"
     }
   }
 }

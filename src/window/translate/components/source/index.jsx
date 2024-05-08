@@ -16,7 +16,9 @@ const SourceInput = () => {
   const { t } = useTranslation();
   const txtRef = useRef(null);
 
-  const { content } = useSourceInput({ inputRef: txtRef });
+  const { content, debounceValue, detectSrc } = useSourceInput({
+    inputRef: txtRef,
+  });
 
   return (
     <div className="w-full">
@@ -46,19 +48,20 @@ const SourceInput = () => {
           <InteractiveWrapper tooltip={t("translate.copy") + ` (⌥C)`}>
             <Copy theme="outline" size="16" fill="#333" strokeWidth={2} />
           </InteractiveWrapper>
-          <DetectLanguage />
+          {/* 显示检测语言 */}
+          {detectSrc && debounceValue && <DetectLanguage src={detectSrc} />}
           <Tooltip>
             <TooltipTrigger asChild>
               <span
                 className={cx(
                   "text-xs ml-auto mr-2",
-                  content.length >= MAX && "text-red-600"
+                  content.length > MAX && "text-red-600"
                 )}
               >
                 {content.length}/{MAX}
               </span>
             </TooltipTrigger>
-            {content.length >= MAX && (
+            {content.length > MAX && (
               <TooltipContent>{t("translate.explain")}</TooltipContent>
             )}
           </Tooltip>
