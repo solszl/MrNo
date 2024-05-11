@@ -7,7 +7,7 @@ export const plugin_name = "baidu_detect";
 const URL = "https://fanyi-api.baidu.com/api/trans/vip/language";
 
 /**
- * @see https://fanyi-api.baidu.com/product/113
+ * @see https://fanyi-api.baidu.com/product/143
  */
 export const detect = async (str, options = {}) => {
   // 平台信息

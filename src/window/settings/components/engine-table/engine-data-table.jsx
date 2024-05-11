@@ -38,7 +38,7 @@ const EngineDataTable = ({
       version: "0.0.0",
       configured: false,
       regURL: "https://cloud.tencent.com/document/product/551/15619",
-      cfg: ["appId", "secretKey", "appId1", "secretKey2"],
+      cfg: ["SecretId", "SecretKey", "ProjectId"],
     },
   ],
   columns,

@@ -1,7 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import useEngineStore from "@/storage/engines";
+import { useShallow } from "zustand/react/shallow";
 
 const About = () => {
+  const engineStore = useEngineStore(
+    useShallow((state) => ({
+      generalConfigs: state.generalConfigs,
+    }))
+  );
   const languageDetect = async () => {
     // const { version, detect } = await import("/plugins/detect/iciba.js");
 
@@ -22,8 +29,15 @@ const About = () => {
     //   getClient,
     // });
 
-    const { detect, translate, voice } = await import("/plugins/collect.json");
-    console.log(detect, translate, voice);
+    // const { detect, translate, voice } = await import("/plugins/collect.json");
+    // console.log(detect, translate, voice);
+
+    const { detect } = await import("/plugins/detect/tencent.js");
+
+    // TODO: 平台id 读取config,暂时写死方便调试
+    const platformId = "tencent";
+    const platformParams = engineStore.generalConfigs[platformId];
+    await detect("interface", { ...platformParams });
   };
   return (
     <div className="space-y-6">
