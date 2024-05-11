@@ -9,7 +9,8 @@
     "tencent": {
       "plugin_name": "tencent_detect",
       "ver": "0.0.0",
-      "regURL": "https://cloud.tencent.com/document/product/551/15619"
+      "regURL": "https://cloud.tencent.com/document/product/551/15619",
+      "cfg": ["SecretId", "SecretKey", "ProjectId"]
     }
   },
   "translate": {

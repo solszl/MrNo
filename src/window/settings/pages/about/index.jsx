@@ -32,12 +32,14 @@ const About = () => {
     // const { detect, translate, voice } = await import("/plugins/collect.json");
     // console.log(detect, translate, voice);
 
-    const { detect } = await import("/plugins/detect/tencent.js");
-
     // TODO: 平台id 读取config,暂时写死方便调试
     const platformId = "tencent";
     const platformParams = engineStore.generalConfigs[platformId];
-    await detect("interface", { ...platformParams });
+    // const { detect } = await import("/plugins/detect/tencent.js");
+    // await detect("interface", { ...platformParams });
+
+    const { translate } = await import("/plugins/translate/tencent.js");
+    await translate("interface", "auto", "zh", { ...platformParams });
   };
   return (
     <div className="space-y-6">

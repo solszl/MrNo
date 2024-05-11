@@ -1,5 +1,4 @@
 import { fetch as TauriFetch } from "@tauri-apps/api/http";
-import dayjs from "dayjs";
 import tencentSignature from "../utils/tencent-sign";
 
 export const version = "0.0.0";
@@ -12,7 +11,6 @@ const URL = "https://tmt.tencentcloudapi.com";
 export const detect = async (str, options = {}) => {
   const { SecretKey, SecretId, ProjectId } = options;
 
-  window.t = `${dayjs().unix()}`;
   const payload = {
     Text: str,
     ProjectId: +ProjectId ?? 0,

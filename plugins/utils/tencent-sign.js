@@ -1,12 +1,15 @@
 import CryptoJS from "crypto-js";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 let host = "tmt.tencentcloudapi.com";
 const service = "tmt";
 let region = "ap-beijing";
 let action = "LanguageDetect";
 let timestamp = `${dayjs().unix()}`;
-let date = "2024-05-10";
+let date = "2024-05-11";
 const version = "2018-03-21";
 const algorithm = "TC3-HMAC-SHA256";
 
@@ -28,7 +31,7 @@ const tencentSignature = (payload, options) => {
   }
 
   timestamp = `${dayjs().unix()}`;
-  date = dayjs().format("YYYY-MM-DD");
+  date = dayjs().utc().format("YYYY-MM-DD");
 
   const canonicalRequest = step1(JSON.stringify(payload), host);
 
@@ -43,7 +46,6 @@ const tencentSignature = (payload, options) => {
 const step1 = (payload, host) => {
   signedHeaders = "content-type;host";
   hashedRequestPayload = getHash(payload);
-  // CryptoJS.SHA256(payload);
   const httpRequestMethod = "POST";
   const canonicalUri = "/";
   const canonicalQueryString = "";
