@@ -38,8 +38,11 @@ const About = () => {
     // const { detect } = await import("/plugins/detect/tencent.js");
     // await detect("interface", { ...platformParams });
 
-    const { translate } = await import("/plugins/translate/tencent.js");
-    await translate("interface", "auto", "zh", { ...platformParams });
+    // const { translate } = await import("/plugins/translate/tencent.js");
+    // await translate("Professional", "auto", "zh", { ...platformParams });
+
+    const { translate } = await import("/plugins/translate/hack_360.js");
+    await translate("hello", "en", "zh", { ...platformParams });
   };
   return (
     <div className="space-y-6">

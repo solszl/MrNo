@@ -11,7 +11,7 @@ const Translate = () => {
     <div className="flex justify-center items-center m-2 flex-col">
       <SourceInput />
       <Language />
-      <TranslateItem />
+      <TranslateItem platform="hack_360" />
       <TranslateItem />
       <TranslateItem />
       <TranslateItem />

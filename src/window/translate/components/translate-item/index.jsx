@@ -4,14 +4,46 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import useTranslateApp from "@/stores/translate";
 import { Copy, Down, Up, VolumeNotice } from "@icon-park/react";
-import { useState } from "react";
+import { useAsyncEffect } from "ahooks";
+import { useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import { useShallow } from "zustand/react/shallow";
 import Explain from "../explain";
 import Voice from "../voice";
 
-const TranslateItem = () => {
+const TranslateItem = ({ platform }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [explain, setExplain] = useState();
+  const { contentType, detectLanguage } = useTranslateApp(
+    useShallow((state) => ({
+      contentType: state.contentType,
+      detectLanguage: state.detectLanguage,
+    }))
+  );
+
+  useEffect(() => {
+    console.log("from translate item", contentType, detectLanguage);
+  }, [contentType, detectLanguage]);
+
+  useAsyncEffect(async () => {
+    if (!isOpen) {
+      return;
+    }
+
+    if (!platform || contentType === "web") {
+      return;
+    }
+
+    const { translate } = await import(
+      /* @vite-ignore */ `/plugins/${contentType}/${platform}.js`
+    );
+
+    const result = await translate("interface", "en", "zh");
+    setExplain(result);
+  }, [isOpen, platform, contentType, detectLanguage]);
+
   return (
     <Collapsible
       open={isOpen}
@@ -37,19 +69,18 @@ const TranslateItem = () => {
       </div>
       <CollapsibleContent className="space-y-2">
         <div className="w-full px-4 flex flex-col">
-          <div className="flex gap-x-4">
-            <Voice label="英" soundmark="/həˈləʊ/" />
-            <Voice label="美" soundmark="/həˈloʊ/" />
-          </div>
-          <Explain
-            partOfSpeech="int."
-            explain="喂，你好（用于问候或打招呼）；喂，你好（打电话时的招呼语）；喂，你好（引起别人注意的招呼语）；<非正式>喂，嘿 (认为别人说了蠢话或分心)；<英，旧>嘿（表示惊讶）"
-          />
-          <Explain
-            partOfSpeech="n."
-            explain="招呼，问候；（Hello）（法、印、美、俄）埃洛（人名）"
-          />
-          <Explain partOfSpeech="v." explain="说（或大声说）“喂”；打招呼" />
+          {explain && (
+            <>
+              <div className="flex gap-x-4">
+                {explain.pronounce?.map((pronounce, index) => (
+                  <Voice key={index} {...pronounce} />
+                ))}
+              </div>
+              {explain.explains.map((explain, index) => (
+                <Explain key={index} {...explain} />
+              ))}
+            </>
+          )}
         </div>
         <div className="w-full space-x-4 px-4 flex items-center pb-2">
           {/* 播放原文声音 */}

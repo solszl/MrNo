@@ -7,7 +7,11 @@
       "translate": "翻译",
       "input_prompt": "输入要翻译的内容",
       "settings": "设置",
-      "explain": "超出后将自动截断翻译"
+      "explain": "超出后将自动截断翻译",
+      "pronounce": {
+        "en_us": "美",
+        "en_uk": "英"
+      }
     },
     "configure": {
       "general": {
@@ -59,6 +63,7 @@
       "art.": "article - 冠词",
       "num.": "numeral - 数词",
       "int.": "interjection - 感叹词",
+      "interj.": "interjection - 感叹词",
       "u.": "uncountable noun - 不可数名词",
       "c.": "countable noun - 可数名词",
       "pl.": "plural - 复数"

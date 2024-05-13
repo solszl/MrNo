@@ -14,6 +14,7 @@ import SettingButton from "../settings";
 const MAX = 200;
 const SourceInput = () => {
   const { t } = useTranslation();
+
   const txtRef = useRef(null);
 
   const { content, debounceValue, detectSrc } = useSourceInput({

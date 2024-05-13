@@ -4,7 +4,7 @@ import App from "./App";
 import "./index.css";
 
 document.addEventListener("keydown", async (e) => {
-  console.log("key down, key:", e.key);
+  // console.log("key down, key:", e.key);
   if (e.key === "Escape") {
     // await appWindow.close();
   }

@@ -1,4 +1,5 @@
 import useEngineStore from "@/storage/engines";
+import useTranslateApp from "@/stores/translate";
 import { useAsyncEffect, useDebounceEffect } from "ahooks";
 import { useEffect, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
@@ -17,9 +18,25 @@ const useSourceInput = (props) => {
     }))
   );
 
+  const { setContentType, setDetectLanguage } = useTranslateApp(
+    useShallow((state) => ({
+      setContentType: state.setContentType,
+      setDetectLanguage: state.setDetectLanguage,
+    }))
+  );
+
   const onInput = (e) => {
     const value = inputRef.current?.value;
     setContent(value);
+  };
+
+  const onKeyup = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      return;
+    }
+
+    console.log("after");
   };
 
   useEffect(() => {
@@ -29,15 +46,18 @@ const useSourceInput = (props) => {
 
     setRef(inputRef);
     inputRef.current.addEventListener("input", onInput);
+    inputRef.current.addEventListener("keydown", onKeyup);
     return () => {
       inputRef.current.removeEventListener("input", onInput);
+      inputRef.current.removeEventListener("keydown", onKeyup);
+
       setRef(null);
     };
   }, [inputRef]);
 
   useDebounceEffect(
     () => {
-      setDebounceValue(content);
+      setDebounceValue(content.trimEnd());
     },
     [content],
     {
@@ -45,8 +65,18 @@ const useSourceInput = (props) => {
     }
   );
 
+  /** 检测内容是单词,还是句子,还是网页等信息 */
   useEffect(() => {
-    console.log("debounceValue", debounceValue);
+    let contentType = "";
+    if (debounceValue.includes(" ")) {
+      contentType = "paragraph";
+    } else if (debounceValue.includes(".")) {
+      contentType = "web";
+    } else {
+      contentType = "translate";
+    }
+
+    setContentType(contentType);
   }, [debounceValue]);
 
   useAsyncEffect(async () => {
@@ -66,6 +96,11 @@ const useSourceInput = (props) => {
 
     setDetectSrc(src);
   }, [debounceValue]);
+
+  useEffect(() => {
+    // 写入检测的语言内容
+    setDetectLanguage(detectSrc);
+  }, [detectSrc]);
 
   return { ref, debounceValue, content, detectSrc };
 };
