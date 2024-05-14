@@ -6,8 +6,8 @@ const useTranslateApp = create(
     return {
       detectLanguage: "",
       contentType: "",
-      sourceLanguage: "",
-      targetLanguage: "",
+      sourceLanguage: "auto",
+      targetLanguage: "zh_cn",
       setDetectLanguage: (lng) =>
         set((state) => {
           state.detectLanguage = lng;
@@ -15,6 +15,19 @@ const useTranslateApp = create(
       setContentType: (type) =>
         set((state) => {
           state.contentType = type;
+        }),
+      setSourceLanguage: (lng) =>
+        set((state) => {
+          state.sourceLanguage = lng;
+        }),
+      setTargetLanguage: (lng) =>
+        set((state) => {
+          state.targetLanguage = lng;
+        }),
+      swapLanguage: (newSource, newTarget) =>
+        set({
+          sourceLanguage: newSource,
+          targetLanguage: newTarget,
         }),
     };
   })
