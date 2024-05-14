@@ -11,9 +11,11 @@ const Explain = ({ partOfSpeech, explain }) => {
     <div className="flex items-start justify-center my-1">
       <Tooltip>
         <TooltipTrigger asChild>
-          <span className="text-base font-normal select-none min-w-6 w-max mr-2 italic cursor-pointer">
-            {partOfSpeech}
-          </span>
+          {partOfSpeech && (
+            <span className="text-base font-normal select-none min-w-6 w-max mr-2 italic cursor-pointer">
+              {partOfSpeech}
+            </span>
+          )}
         </TooltipTrigger>
         <TooltipContent>{t(`speech.${partOfSpeech}`)}</TooltipContent>
       </Tooltip>

@@ -11,7 +11,9 @@
       "choose": "选择语言",
       "pronounce": {
         "en_us": "美",
-        "en_uk": "英"
+        "en_uk": "英",
+        "original": "原",
+        "translate": "译"
       }
     },
     "configure": {
@@ -77,6 +79,9 @@
       "ru": "俄语",
       "auto": "自动选择",
       "unsupported": "不支持该语言"
+    },
+    "platform": {
+      "hack_360": "360翻译"
     }
   }
 }

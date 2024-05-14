@@ -18,12 +18,14 @@ const useSourceInput = (props) => {
     }))
   );
 
-  const { setContentType, setDetectLanguage } = useTranslateApp(
-    useShallow((state) => ({
-      setContentType: state.setContentType,
-      setDetectLanguage: state.setDetectLanguage,
-    }))
-  );
+  const { setContentType, setDetectLanguage, setContentToStore } =
+    useTranslateApp(
+      useShallow((state) => ({
+        setContentToStore: state.setContent,
+        setContentType: state.setContentType,
+        setDetectLanguage: state.setDetectLanguage,
+      }))
+    );
 
   const onInput = (e) => {
     const value = inputRef.current?.value;
@@ -58,6 +60,7 @@ const useSourceInput = (props) => {
   useDebounceEffect(
     () => {
       setDebounceValue(content.trimEnd());
+      setContentToStore(content.trimEnd());
     },
     [content],
     {

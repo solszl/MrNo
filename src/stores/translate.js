@@ -5,9 +5,14 @@ const useTranslateApp = create(
   immer((set) => {
     return {
       detectLanguage: "",
+      content: "",
       contentType: "",
       sourceLanguage: "auto",
       targetLanguage: "zh_cn",
+      setContent: (text) =>
+        set({
+          content: text,
+        }),
       setDetectLanguage: (lng) =>
         set((state) => {
           state.detectLanguage = lng;

@@ -5,21 +5,24 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import useTranslateApp from "@/stores/translate";
-import { Copy, Down, Up, VolumeNotice } from "@icon-park/react";
+import { Copy, Down, Up } from "@icon-park/react";
 import { useAsyncEffect } from "ahooks";
 import { useEffect, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { useShallow } from "zustand/react/shallow";
 import Explain from "../explain";
 import Voice from "../voice";
 
 const TranslateItem = ({ platform }) => {
+  const { t } = useTranslation();
+
   const [isOpen, setIsOpen] = useState(false);
   const [explain, setExplain] = useState();
-  const { contentType, detectLanguage } = useTranslateApp(
+  const { contentType, detectLanguage, content } = useTranslateApp(
     useShallow((state) => ({
       contentType: state.contentType,
       detectLanguage: state.detectLanguage,
+      content: state.content,
     }))
   );
 
@@ -36,13 +39,22 @@ const TranslateItem = ({ platform }) => {
       return;
     }
 
-    const { translate } = await import(
-      /* @vite-ignore */ `/plugins/${contentType}/${platform}.js`
-    );
+    let result;
+    if (contentType === "translate") {
+      const { translate } = await import(
+        /* @vite-ignore */ `/plugins/translate/${platform}.js`
+      );
 
-    const result = await translate("interface", "en", "zh");
+      result = await translate(content, "en", "zh");
+    } else if (contentType === "paragraph") {
+      const { translate } = await import(
+        /* @vite-ignore */ `/plugins/paragraph/${platform}.js`
+      );
+
+      result = await translate(content);
+    }
     setExplain(result);
-  }, [isOpen, platform, contentType, detectLanguage]);
+  }, [isOpen, platform, contentType, detectLanguage, content]);
 
   return (
     <Collapsible
@@ -52,10 +64,10 @@ const TranslateItem = ({ platform }) => {
     >
       <div className="flex items-center justify-between space-x-4 px-4">
         <span className="text-xs font-thin items-center flex select-none">
-          <FaGoogle className="w-3 h-3 mr-2" />
+          {/* <FaGoogle className="w-3 h-3 mr-2" /> */}
           {/* <img src="./youdao.png" alt="" className="w-3 h-3 mr-2" /> */}
           {/* <BiLogoBing className="w-3 h-3 mr-2" /> */}
-          谷歌翻译
+          {t(`platform.${platform}`)}
         </span>
         <CollapsibleTrigger asChild>
           <Button variant="ghost" size="sm" className="w-9 p-0">
@@ -72,8 +84,8 @@ const TranslateItem = ({ platform }) => {
           {explain && (
             <>
               <div className="flex gap-x-4">
-                {explain.pronounce?.map((pronounce, index) => (
-                  <Voice key={index} {...pronounce} />
+                {explain.pronounce.map((pronounce) => (
+                  <Voice key={pronounce.speech} {...pronounce} />
                 ))}
               </div>
               {explain.explains.map((explain, index) => (
@@ -82,11 +94,17 @@ const TranslateItem = ({ platform }) => {
             </>
           )}
         </div>
-        <div className="w-full space-x-4 px-4 flex items-center pb-2">
-          {/* 播放原文声音 */}
-          <VolumeNotice theme="outline" size="16" fill="#333" strokeWidth={2} />
-          <Copy theme="outline" size="16" fill="#333" strokeWidth={2} />
-        </div>
+        {contentType === "paragraph" && (
+          <div className="w-full space-x-4 px-4 flex items-center pb-2">
+            <Copy
+              theme="outline"
+              size="16"
+              fill="#333"
+              strokeWidth={2}
+              className="cursor-pointer"
+            />
+          </div>
+        )}
       </CollapsibleContent>
     </Collapsible>
   );
