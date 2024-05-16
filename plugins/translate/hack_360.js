@@ -51,7 +51,7 @@ export const translate = async (text, from, to, options = {}) => {
     const pronounce = Object.keys(tempObj).reduce((acc, key) => {
       let obj = {
         label: KEY[key],
-        phonetic: phonetic[key] || "",
+        phonetic: phonetic?.[key] ?? "",
         speech: `https://${decodeEndpoint(HOST)}${speech[key]}` || "",
       };
       acc.push(obj);

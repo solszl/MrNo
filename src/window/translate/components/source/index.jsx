@@ -11,7 +11,7 @@ import useSourceInput from "../../hooks/useSourceInput";
 import DetectLanguage from "../detect";
 import SettingButton from "../settings";
 
-const MAX = 200;
+const MAX = 500;
 const SourceInput = () => {
   const { t } = useTranslation();
 

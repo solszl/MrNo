@@ -12,7 +12,7 @@ const Translate = () => {
       <SourceInput />
       <Language />
       <TranslateItem platform="hack_360" />
-      <TranslateItem />
+      <TranslateItem platform="hack_tencent" />
       <TranslateItem />
       <TranslateItem />
       <TranslateItem />

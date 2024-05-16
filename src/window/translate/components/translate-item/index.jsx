@@ -18,11 +18,19 @@ const TranslateItem = ({ platform }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [explain, setExplain] = useState();
-  const { contentType, detectLanguage, content } = useTranslateApp(
+  const {
+    contentType,
+    detectLanguage,
+    content,
+    sourceLanguage,
+    targetLanguage,
+  } = useTranslateApp(
     useShallow((state) => ({
       contentType: state.contentType,
       detectLanguage: state.detectLanguage,
       content: state.content,
+      sourceLanguage: state.sourceLanguage,
+      targetLanguage: state.targetLanguage,
     }))
   );
 
@@ -51,7 +59,7 @@ const TranslateItem = ({ platform }) => {
         /* @vite-ignore */ `/plugins/paragraph/${platform}.js`
       );
 
-      result = await translate(content);
+      result = await translate(content, sourceLanguage, targetLanguage);
     }
     setExplain(result);
   }, [isOpen, platform, contentType, detectLanguage, content]);

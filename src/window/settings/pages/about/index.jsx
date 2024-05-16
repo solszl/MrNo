@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import useEngineStore from "@/storage/engines";
 import { useShallow } from "zustand/react/shallow";
+import { guid } from "../../../../../plugins/utils/guid";
 
 const About = () => {
   const engineStore = useEngineStore(
@@ -41,8 +42,10 @@ const About = () => {
     // const { translate } = await import("/plugins/translate/tencent.js");
     // await translate("Professional", "auto", "zh", { ...platformParams });
 
-    const { translate } = await import("/plugins/translate/hack_360.js");
-    await translate("hello", "en", "zh", { ...platformParams });
+    // const { translate } = await import("/plugins/translate/hack_360.js");
+    // await translate("hello", "en", "zh", { ...platformParams });
+
+    console.log(guid());
   };
   return (
     <div className="space-y-6">

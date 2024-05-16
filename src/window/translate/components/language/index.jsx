@@ -64,7 +64,12 @@ const Language = () => {
       </Button>
       <ComboBox
         ref={targetRef}
-        lngList={[...lngList]}
+        lngList={[
+          ...lngList,
+          { value: "es", label: "es" },
+          { value: "fr", label: "fr" },
+          { value: "it", label: "it" },
+        ]}
         onItemSelect={setTargetLanguage}
         defaultSelectValue={targetLanguage}
       ></ComboBox>
