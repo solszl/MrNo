@@ -81,7 +81,7 @@
       "unsupported": "不支持该语言"
     },
     "platform": {
-      "hack_360": "360翻译",
+      "hack_youdao": "有道翻译",
       "hack_tencent": "腾讯翻译君"
     }
   }

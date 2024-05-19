@@ -47,20 +47,27 @@ const TranslateItem = ({ platform }) => {
       return;
     }
 
-    let result;
-    if (contentType === "translate") {
-      const { translate } = await import(
-        /* @vite-ignore */ `/plugins/translate/${platform}.js`
-      );
+    // if (contentType === "translate") {
+    //   const { translate } = await import(
+    //     /* @vite-ignore */ `/plugins/translate/${platform}.js`
+    //   );
 
-      result = await translate(content, "en", "zh");
-    } else if (contentType === "paragraph") {
-      const { translate } = await import(
-        /* @vite-ignore */ `/plugins/paragraph/${platform}.js`
-      );
+    //   result = await translate(content, "en", "zh");
+    // } else if (contentType === "paragraph") {
+    //   const { translate } = await import(
+    //     /* @vite-ignore */ `/plugins/paragraph/${platform}.js`
+    //   );
 
-      result = await translate(content, sourceLanguage, targetLanguage);
-    }
+    //   result = await translate(content, sourceLanguage, targetLanguage);
+    // }
+    // setExplain(result);
+
+    const plugin = await import(/* @vite-ignore */ `/plugins/${platform}.js`);
+    const result = await plugin[contentType](
+      content,
+      sourceLanguage,
+      targetLanguage
+    );
     setExplain(result);
   }, [isOpen, platform, contentType, detectLanguage, content]);
 

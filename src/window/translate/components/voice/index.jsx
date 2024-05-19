@@ -19,7 +19,7 @@ const Voice = ({ label, phonetic, speech }) => {
   return (
     <div className="flex items-center gap-x-2 px-1 py-0.5 mb-1 text-sm">
       <span className="text-[12px]">{t(`translate.pronounce.${label}`)}</span>
-      {phonetic && <span>{phonetic}</span>}
+      {phonetic && <span>[ {phonetic} ]</span>}
       <VolumeNotice
         theme="outline"
         size="16"

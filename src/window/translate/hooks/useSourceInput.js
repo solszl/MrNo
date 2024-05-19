@@ -76,7 +76,7 @@ const useSourceInput = (props) => {
     } else if (debounceValue.includes(".")) {
       contentType = "web";
     } else {
-      contentType = "translate";
+      contentType = "word";
     }
 
     setContentType(contentType);
@@ -91,12 +91,23 @@ const useSourceInput = (props) => {
     const platformId = "baidu";
     const platformParams = engineStore.generalConfigs[platformId];
 
-    const pluginPath = `/plugins/detect/${platformId}.js`;
-    const { detect } = await import(/* @vite-ignore */ pluginPath);
-    const src = await detect(debounceValue, {
+    // const pluginPath = `/plugins/detect/${platformId}.js`;
+    // const { detect } = await import(/* @vite-ignore */ pluginPath);
+    // const src = await detect(debounceValue, {
+    //   ...platformParams,
+    // });
+
+    // setDetectSrc(src);
+
+    // const platformId = "hack_tencent";
+    // const plugin = await import(`/plugins/${platformId}.js`);
+    // const src = await plugin.detect(debounceValue);
+    // setDetectSrc(src);
+
+    const plugin = await import(/* @vite-ignore */ `/plugins/${platformId}.js`);
+    const src = await plugin.detect(debounceValue, {
       ...platformParams,
     });
-
     setDetectSrc(src);
   }, [debounceValue]);
 
