@@ -12,7 +12,8 @@ const HOST =
 
 const langKeyPath = {
   en: {
-    path: ["ec.word"],
+    wordPath: ["ec.word"],
+    paragraphPath: ["ec.web_trans"],
     trs: "trs",
     phone: ["ukphone", "usphone"],
   },
@@ -43,8 +44,8 @@ export const word = async (text, from, to, options = {}) => {
 
     let f = from === "auto" ? "en" : from;
     const pathCfg = langKeyPath[f];
-    const { path, trs, phone } = pathCfg;
-    const explains = _getObjValueByPath(resp.data, `${path}.${trs}`).reduce(
+    const { wordPath, trs, phone } = pathCfg;
+    const explains = _getObjValueByPath(resp.data, `${wordPath}.${trs}`).reduce(
       (prev, curr) => {
         const { pos, tran } = curr;
         prev.push({
@@ -65,7 +66,47 @@ export const word = async (text, from, to, options = {}) => {
   return null;
 };
 
-export const paragraph = async (text, from, to, options = {}) => {};
+export const paragraph = async (text, from, to, options = {}) => {
+  const resp = await _internalTranslate(text, from, to, options);
+  if (resp) {
+    const {
+      data: { meta, fanyi },
+    } = resp;
+
+    if (!!!+meta.isHasSimpleDict && !fanyi?.tran) {
+      console.log("no translate");
+      return null;
+    }
+
+    let f = from === "auto" ? "en" : from;
+    const pathCfg = langKeyPath[f];
+    const { paragraphPath } = pathCfg;
+    const explains =
+      _getObjValueByPath(resp.data, `${paragraphPath}`)?.reduce(
+        (prev, curr) => {
+          prev.push({
+            partOfSpeech: "",
+            explain: curr,
+          });
+          return prev;
+        },
+        []
+      ) ?? [];
+
+    if (fanyi?.tran) {
+      explains.push({
+        partOfSpeech: "",
+        explain: fanyi.tran,
+      });
+    }
+
+    return {
+      pronounce: [],
+      explains,
+    };
+  }
+  console.log("paragraph resp", resp);
+};
 
 const _internalTranslate = async (text, from, to, options) => {
   const payload = {
