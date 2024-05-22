@@ -1,4 +1,5 @@
 import { Body, fetch as TauriFetch } from "@tauri-apps/api/http";
+import { stringify } from "tiny-querystring";
 import { decode } from "./utils/decode";
 
 export const plugin_name = "hack_youdao";
@@ -9,6 +10,8 @@ export const plugin_version = "0.0.0";
 // 单词和段落都是使用一个接口
 const HOST =
   "aHR0cHM6Ly9kaWN0LnlvdWRhby5jb20vanNvbmFwaV9zP2RvY3R5cGU9anNvbiZqc29udmVyc2lvbj00";
+
+const VOICE_HOST = "aHR0cHM6Ly9kaWN0LnlvdWRhby5jb20vZGljdHZvaWNl";
 
 const langKeyPath = {
   en: {
@@ -40,8 +43,6 @@ export const word = async (text, from, to, options = {}) => {
       return null;
     }
 
-    const pronounce = [];
-
     let f = from === "auto" ? "en" : from;
     const pathCfg = langKeyPath[f];
     const { wordPath, trs, phone } = pathCfg;
@@ -57,6 +58,7 @@ export const word = async (text, from, to, options = {}) => {
       },
       []
     );
+
     return {
       pronounce,
       explains,
@@ -100,8 +102,30 @@ export const paragraph = async (text, from, to, options = {}) => {
       });
     }
 
+    const pronounce = [];
+    pronounce.push({
+      label: "en_us",
+      phonetic: "",
+      speech: `${decode(VOICE_HOST)}?${stringify({
+        audio: text,
+        le: f,
+        type: 2,
+      })}`,
+    });
+    pronounce.push({
+      label: "en_uk",
+      phonetic: "",
+      speech: `${decode(VOICE_HOST)}?${stringify({
+        audio: text,
+        le: f,
+        type: 1,
+      })}`,
+    });
+
+    console.log(pronounce[0]);
+
     return {
-      pronounce: [],
+      pronounce,
       explains,
     };
   }
