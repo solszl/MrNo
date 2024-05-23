@@ -7,13 +7,6 @@ const Voice = ({ label, phonetic, speech }) => {
   const [play, { stop }] = useSound(speech, {
     html5: true,
     format: ["mp3"],
-    // delegated: {
-    //   xhr: {
-    //     headers: {
-    //       Referer: "https://fanyi.qq.com/",
-    //     },
-    //   },
-    // },
   });
 
   return (

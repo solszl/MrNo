@@ -13,12 +13,19 @@ const HOST =
 
 const VOICE_HOST = "aHR0cHM6Ly9kaWN0LnlvdWRhby5jb20vZGljdHZvaWNl";
 
+const VOICE_TYPE = {
+  EN_UK: 1,
+  EN_US: 2,
+};
 const langKeyPath = {
   en: {
     wordPath: ["ec.word"],
     paragraphPath: ["ec.web_trans"],
     trs: "trs",
-    phone: ["ukphone", "usphone"],
+    phone: [
+      { label: "en_uk", key: "ukphone", voice: VOICE_TYPE.EN_UK },
+      { label: "en_us", key: "usphone", voice: VOICE_TYPE.EN_US },
+    ],
   },
   fr: {
     trs: ["fc.word.trs"],
@@ -58,6 +65,19 @@ export const word = async (text, from, to, options = {}) => {
       },
       []
     );
+
+    const pronounce = [];
+    phone.forEach((p) => {
+      pronounce.push({
+        label: p.label,
+        phonetic: _getObjValueByPath(resp.data, `${wordPath}.${p.key}`),
+        speech: `${decode(VOICE_HOST)}?${stringify({
+          audio: text,
+          le: f,
+          type: p.voice,
+        })}`,
+      });
+    });
 
     return {
       pronounce,
@@ -109,7 +129,7 @@ export const paragraph = async (text, from, to, options = {}) => {
       speech: `${decode(VOICE_HOST)}?${stringify({
         audio: text,
         le: f,
-        type: 2,
+        type: VOICE_TYPE.EN_US,
       })}`,
     });
     pronounce.push({
@@ -118,18 +138,15 @@ export const paragraph = async (text, from, to, options = {}) => {
       speech: `${decode(VOICE_HOST)}?${stringify({
         audio: text,
         le: f,
-        type: 1,
+        type: VOICE_TYPE.EN_UK,
       })}`,
     });
-
-    console.log(pronounce[0]);
 
     return {
       pronounce,
       explains,
     };
   }
-  console.log("paragraph resp", resp);
 };
 
 const _internalTranslate = async (text, from, to, options) => {
