@@ -113,6 +113,9 @@ importers:
       react-hook-form:
         specifier: ^7.51.3
         version: 7.51.4(react@18.3.1)
+      react-hotkeys-hook:
+        specifier: ^4.5.0
+        version: 4.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-i18next:
         specifier: ^14.1.0
         version: 14.1.1(i18next@23.11.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1693,6 +1696,12 @@ packages:
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
+
+  react-hotkeys-hook@4.5.0:
+    resolution: {integrity: sha512-Samb85GSgAWFQNvVt3PS90LPPGSf9mkH/r4au81ZP1yOIFayLC3QAvqTgGtJ8YEDMXtPmaVBs6NgipHO6h4Mug==}
+    peerDependencies:
+      react: '>=16.8.1'
+      react-dom: '>=16.8.1'
 
   react-i18next@14.1.1:
     resolution: {integrity: sha512-QSiKw+ihzJ/CIeIYWrarCmXJUySHDwQr5y8uaNIkbxoGRm/5DukkxZs+RPla79IKyyDPzC/DRlgQCABHtrQuQQ==}
@@ -3387,6 +3396,11 @@ snapshots:
   react-hook-form@7.51.4(react@18.3.1):
     dependencies:
       react: 18.3.1
+
+  react-hotkeys-hook@4.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-i18next@14.1.1(i18next@23.11.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

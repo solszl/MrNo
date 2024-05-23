@@ -28,6 +28,9 @@
       "clipboard": {
         "all": true
       },
+      "globalShortcut": {
+        "all": true
+      },
       "window": {
         "setTitle": true,
         "close": true,
