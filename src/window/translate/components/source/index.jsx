@@ -5,14 +5,14 @@ import { Tooltip, TooltipContent } from "@/components/ui/tooltip";
 import { Copy, Pin, VolumeNotice } from "@icon-park/react";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import { cx } from "class-variance-authority";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import useSourceInput from "../../hooks/useSourceInput";
 import DetectLanguage from "../detect";
 import SettingButton from "../settings";
 
 const MAX = 500;
-const SourceInput = () => {
+const SourceInput = ({ clipboardContent }) => {
   const { t } = useTranslation();
 
   const txtRef = useRef(null);
@@ -20,6 +20,12 @@ const SourceInput = () => {
   const { content, debounceValue, detectSrc } = useSourceInput({
     inputRef: txtRef,
   });
+
+  useEffect(() => {
+    if (!clipboardContent) return;
+
+    txtRef.current.value = clipboardContent;
+  }, [clipboardContent]);
 
   return (
     <div className="w-full">
