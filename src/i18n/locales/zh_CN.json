@@ -69,7 +69,8 @@
       "interj.": "interjection - 感叹词",
       "u.": "uncountable noun - 不可数名词",
       "c.": "countable noun - 可数名词",
-      "pl.": "plural - 复数"
+      "pl.": "plural - 复数",
+      "exclam.": "exclamation - 感叹词"
     },
     "language": {
       "jp": "日文",
