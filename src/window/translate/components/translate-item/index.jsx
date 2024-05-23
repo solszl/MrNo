@@ -13,7 +13,7 @@ import { useShallow } from "zustand/react/shallow";
 import Explain from "../explain";
 import Voice from "../voice";
 
-const TranslateItem = ({ platform }) => {
+const TranslateItem = ({ platform, open }) => {
   const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +35,10 @@ const TranslateItem = ({ platform }) => {
   );
 
   useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
+
+  useEffect(() => {
     console.log("from translate item", contentType, detectLanguage);
   }, [contentType, detectLanguage]);
 
@@ -47,20 +51,9 @@ const TranslateItem = ({ platform }) => {
       return;
     }
 
-    // if (contentType === "translate") {
-    //   const { translate } = await import(
-    //     /* @vite-ignore */ `/plugins/translate/${platform}.js`
-    //   );
-
-    //   result = await translate(content, "en", "zh");
-    // } else if (contentType === "paragraph") {
-    //   const { translate } = await import(
-    //     /* @vite-ignore */ `/plugins/paragraph/${platform}.js`
-    //   );
-
-    //   result = await translate(content, sourceLanguage, targetLanguage);
-    // }
-    // setExplain(result);
+    if (content === "") {
+      return;
+    }
 
     const plugin = await import(/* @vite-ignore */ `/plugins/${platform}.js`);
     const result = await plugin[contentType](
@@ -79,9 +72,6 @@ const TranslateItem = ({ platform }) => {
     >
       <div className="flex items-center justify-between space-x-4 px-4">
         <span className="text-xs font-thin items-center flex select-none">
-          {/* <FaGoogle className="w-3 h-3 mr-2" /> */}
-          {/* <img src="./youdao.png" alt="" className="w-3 h-3 mr-2" /> */}
-          {/* <BiLogoBing className="w-3 h-3 mr-2" /> */}
           {t(`platform.${platform}`)}
         </span>
         <CollapsibleTrigger asChild>
@@ -100,7 +90,7 @@ const TranslateItem = ({ platform }) => {
             <>
               <div className="flex gap-x-4">
                 {explain.pronounce.map((pronounce) => (
-                  <Voice key={pronounce.speech} {...pronounce} />
+                  <Voice key={pronounce.label} {...pronounce} />
                 ))}
               </div>
               {explain.explains.map((explain, index) => (

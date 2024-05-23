@@ -9,6 +9,7 @@ const useTranslateApp = create(
       contentType: "",
       sourceLanguage: "auto",
       targetLanguage: "zh_cn",
+      toggleStatus: [true, false, false, false, false],
       setContent: (text) =>
         set({
           content: text,
@@ -33,6 +34,10 @@ const useTranslateApp = create(
         set({
           sourceLanguage: newSource,
           targetLanguage: newTarget,
+        }),
+      toggleGroupStatus: (index) =>
+        set((state) => {
+          state.toggleStatus[index] = !state.toggleStatus[index];
         }),
     };
   })
