@@ -25,6 +25,7 @@ const SourceInput = ({ clipboardContent }) => {
     if (!clipboardContent) return;
 
     txtRef.current.value = clipboardContent;
+    txtRef.current.focus();
   }, [clipboardContent]);
 
   return (
